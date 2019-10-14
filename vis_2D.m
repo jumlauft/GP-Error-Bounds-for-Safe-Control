@@ -1,4 +1,5 @@
-
+% Copyright (c) by Jonas Umlauft (TUM) under BSD License 
+% Last modified: Jonas Umlauft 2019-10
 %% Less test data
 Nte = 1e4; Ndte = floor(nthroot(Nte,E));  Nte = Ndte^E;
 Xtes = ndgridj(XteMin, XteMax,Ndte*ones(E,1)) ;

@@ -9,7 +9,7 @@ function [dxdt] = dynRobot(t,x,u,p)
 %    .Mfun   @fun       X -> Mass Matrix 
 % OUT: 
 %   dxdt  E x 1
-% Copyright (c) by Jonas Umlauft under BSD License
+% Copyright (c) by Jonas Umlauft (TUM) under BSD License 
 % Last modified: Jonas Umlauft 04/2019
 
 nDof = size(x,1)/2;

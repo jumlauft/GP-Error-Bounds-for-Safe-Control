@@ -12,7 +12,7 @@ function u = ctrlFeLiRob(t,x,p,ref)
 % OUT:
 %   u  1 x 1
 % E: state space dimension
-% Copyright (c) by Jonas Umlauft under BSD License
+% Copyright (c) by Jonas Umlauft (TUM) under BSD License 
 % Last modified: Jonas Umlauft 10/2018
 
 nDof = size(x,1)/2;

@@ -15,7 +15,7 @@ function [Mfun,Cfun,f] = getdyn2Dof(p)
 %   Mfun       	@fun       X -> Mass Matrix 
 %   f           @fun       uncontrolled dynamics
 % see http://www.cds.caltech.edu/~murray/books/MLS/pdf/mls94-manipdyn_v1_2.pdf
-% Copyright (c) by Jonas Umlauft under BSD License
+% Copyright (c) by Jonas Umlauft (TUM) under BSD License 
 % Last modified: Jonas Umlauft 04/2019
 
 a = p.Iz1 + p.Iz2 + p.M1*p.R1^2 + p.M2*(p.L1^2+p.R2^2);

@@ -12,6 +12,7 @@ function [GPm,GPs2, gprMdls, sn2] = learnGPR(X,Y, varargin)
 % E: Dimensionality of outputs
 % D: Dimensionality of inputs
 % Ntr: Number of training points
+% Copyright (c) by Jonas Umlauft (TUM) under BSD License 
 % Last modified: Jonas Umlauft, 06/2017
 
 E = size(Y,1);

@@ -9,7 +9,7 @@ function [Xj2,Xj1] = RobotJoint2Task(theta,p)
 %   Xj2       	2 x N   Position end of link 2 in task space
 %   Xj1       	2 x N   Position end of link 1 in task space
 %
-% Copyright (c) by Jonas Umlauft under BSD License
+% Copyright (c) by Jonas Umlauft (TUM) under BSD License 
 % Last modified: Jonas Umlauft 04/2019
 
 Xj1(1,:) = p.L1*cos(theta(1,:));

@@ -9,7 +9,7 @@ function r = refGeneral(t,E,reffun)
 % Out:
 %    r       E x N              Reference and E derivatives for all t
 
-% Copyright (c) by Jonas Umlauft under BSD License 
+% Copyright (c) by Jonas Umlauft (TUM) under BSD License 
 % Author: Jonas Umlauft, Last modified: 11/2017
 
 if ~isscalar(E) || ~isvector(t)

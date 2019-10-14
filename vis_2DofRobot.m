@@ -1,3 +1,5 @@
+% Copyright (c) by Jonas Umlauft (TUM) under BSD License 
+% Last modified: Jonas Umlauft 2019-10
 %% Prepare for plot
 Xtaskte = RobotJoint2Task(Xtepos(ipos,:),pdyn);
 Xtasktr = RobotJoint2Task(Xtr(ipos,:),pdyn);
@@ -41,7 +43,8 @@ for nsim = 1:Nsim
     
     line([0 Xsimj1(1,nsim)],[0 Xsimj1(2,nsim)]);
     line([Xsimj1(1,nsim) Xsimj2(1,nsim)],[Xsimj1(2,nsim) Xsimj2(2,nsim)]);
-    
+    timestamp = text(-2,-1.5,['t=' num2str(T(nsim))]);
+
     drawnow;
     pause(0.05);
 end

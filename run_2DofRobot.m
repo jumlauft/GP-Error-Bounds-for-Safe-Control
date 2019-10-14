@@ -1,3 +1,5 @@
+% Copyright (c) by Jonas Umlauft (TUM) under BSD License 
+% Last modified: Jonas Umlauft 2019-10
 clearvars; clear; close all; clc;rng default; 
 setname = '2DofRobot';
 
