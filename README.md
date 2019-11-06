@@ -10,7 +10,7 @@ Please acknowledge the authors in any academic publication that have made
 use of this code or parts of it by referencing to the paper.
 
 The most recent version is available at:
-https://gitlab.lrz.de/ga68car/GPerrorbound
+https://gitlab.lrz.de/ga68car/GPerrorbounds4safecontrol
 
 Please send your feedbacks or questions to:
 armin.lederer_at_tum.de
