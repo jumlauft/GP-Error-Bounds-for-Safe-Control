@@ -21,7 +21,7 @@ Nsim = 100;             % Simulation steps
 sn = 0.1*ones(nDof,1);  % Observation noise (std deviation)
 
 % Lyapunov test
-tau = 1e-4;             % Grid distance
+tau = 1e-8;             % Grid distance
 delta = 0.01;           % Probability
 deltas = ones(nDof,1)*delta/nDof;
 
@@ -32,7 +32,7 @@ ref{2} = @(t) refGeneral(t,2+1,@(tau) 1.5*cos(2*tau));  % circle
 
 % Controller gains
 pFeLi.lam = ones(nDof,1);
-pFeLi.kc = 5*ones(nDof,1);
+pFeLi.kc = 7*ones(nDof,1);
 
 % GP learning and simulation parameters
 optGPR = {'KernelFunction','ardsquaredexponential','ConstantSigma',true,'Sigma',sn};
@@ -70,8 +70,8 @@ for ndof = 1:nDof
     ls = exp(gprMdls{ndof}.Impl.ThetaHat(1:E));  sf = exp(gprMdls{ndof}.Impl.ThetaHat(end));
     Lf = max(sqrt(sum(gradestj(@(x) nth_element({ndof,1:size(x,2)},pdyn.f,x),Xte).^2,1)));
     Lk = norm(sf^2*exp(-0.5)./ls);   Lnu = Lk*sqrt(Ntr)*norm(gprMdls{ndof}.Alpha);
-    omega = sqrt(2*tau*Ntr*Lk*norm(kfcn(Xtr',Xtr')+sn(ndof)^2*eye(Ntr))*sf^2);
-    gamma = tau*(Lnu+Lf) + omega;   beta = log((1+((max(XteMax)-min(XteMin))/tau))^E/deltas(ndof));
+    omega = sqrt(2*tau*Lk*(1+Ntr*norm(kfcn(Xtr',Xtr')+sn(ndof)^2*eye(Ntr))*sf^2));
+    beta = 2*log((1+((max(XteMax)-min(XteMin))/tau))^E/deltas(ndof));     gamma = tau*(Lnu+Lf) + sqrt(beta)*omega;
     
     LyapDecr{ndof} = @(X,r) sqrt(sum((X-r).^2,1)) >= ...
         (sqrt(beta).*sqrt(nth_element({ndof,1:size(X,2)},sigfun,X))+gamma)/(pFeLi.kc(ndof)*sqrt(pFeLi.lam(ndof)^2+1));

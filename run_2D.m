@@ -19,7 +19,7 @@ ref = @(t) refGeneral(t,E+1,@(tau) 2*sin(tau));  % circle
 
 % Controller gains
 pFeLi.lam = ones(E-1,1);
-pFeLi.kc = 1;
+pFeLi.kc = 2;
 
 % Define Systemdynamics
 a = 1; b = 1; c = 0;
@@ -39,7 +39,7 @@ Xte1 = reshape(Xte(1,:),Ndte,Ndte); Xte2 = reshape(Xte(2,:),Ndte,Ndte);
 Ntrajplot = 100;
 
 % Lyapunov test
-tau = 1e-4;     % Grid distance
+tau = 1e-8;     % Grid distance
 delta = 0.01;     % Probability for error bound
 deltaL = 0.01;     % Probability for Lipschitz constant
 
@@ -82,9 +82,9 @@ for e=1:E
 end
 Lfh =  norm(Lfs);
 Lnu = Lk*sqrt(Ntr)*norm(gprModel.Alpha);
-omega = sqrt(2*tau*Ntr*Lk*norm(kfcn(Xtr',Xtr')+sn^2*eye(Ntr))*sf^2);
-gamma = tau*(Lnu+Lfh) + omega;
-beta = log((1+((max(XteMax)-min(XteMin))/tau))^E/delta);
+omega = sqrt(2*tau*Lk*(1+Ntr*norm(kfcn(Xtr',Xtr')+sn^2*eye(Ntr))*sf^2));
+beta = 2*log((1+((max(XteMax)-min(XteMin))/tau))^E/delta);
+gamma = tau*(Lnu+Lfh) + sqrt(beta)*omega;
 
 Lyapincr = @(X,r) sqrt(sum((X-r).^2,1))' <= (sqrt(beta).*sigfun(X)+gamma)/(pFeLi.kc*sqrt(pFeLi.lam^2+1));
 
